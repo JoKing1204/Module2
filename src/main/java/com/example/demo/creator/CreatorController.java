@@ -1,6 +1,9 @@
 package com.example.demo.creator;
 
 import java.util.List;
+import java.util.Optional;
+
+import com.example.demo.game.Game;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -24,6 +27,10 @@ public class CreatorController {
     @GetMapping
     List<Creator> getCreators() {
         return this.creatorRepository.findAll();
+    }
+    @GetMapping(path ="{creatorId}")
+    Optional<Creator> getCreator(@PathVariable("creatorId") Long id) {
+        return this.creatorRepository.findById(id);
     }
 
     @PostMapping

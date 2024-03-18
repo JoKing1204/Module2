@@ -6,6 +6,8 @@ import com.example.demo.creator.CreatorRepository;
 import com.example.demo.game.Game;
 import com.example.demo.game.GameRepository;
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -33,6 +35,11 @@ public class GenreController {
     @GetMapping
     List<Genre> getGenres() {
         return this.genreRepository.findAll();
+    }
+
+    @GetMapping(path ="{genreId}")
+    Optional<Genre> getGenre(@PathVariable("genreId") Long id) {
+        return this.genreRepository.findById(id);
     }
 
     @PostMapping
